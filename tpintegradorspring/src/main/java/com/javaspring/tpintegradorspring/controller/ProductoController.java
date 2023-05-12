@@ -39,7 +39,7 @@ public class ProductoController {
         prod_serv.borrarProducto(id);
     }
     
-    @PutMapping ("/productos/editar") //crea un producto nuevo en lugar de editarlo, posiblemente por lio con la id
+    @PutMapping ("/productos/editar")
     public void editarProducto(@RequestBody Producto prod){
         prod_serv.editarProducto(prod);
     }
