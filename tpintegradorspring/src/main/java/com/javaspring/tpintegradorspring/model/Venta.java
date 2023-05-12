@@ -11,10 +11,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-@Entity
+//@Entity
 public class Venta {
-    @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    //@Id
+    //@GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long codigo_venta;
     public LocalDate fecha_venta;
     public double total;

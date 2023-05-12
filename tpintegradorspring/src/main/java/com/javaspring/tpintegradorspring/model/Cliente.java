@@ -9,10 +9,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-@Entity
+//@Entity
 public class Cliente {
-    @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    //@Id
+    //@GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long id_cliente;
     public String nombre;
     public String apellido;
