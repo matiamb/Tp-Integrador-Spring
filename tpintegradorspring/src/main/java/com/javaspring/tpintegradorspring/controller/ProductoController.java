@@ -20,8 +20,9 @@ public class ProductoController {
     private IProductoService prod_serv;
     
     @PostMapping ("/productos/crear")
-    public void crearProducto(@RequestBody Producto prod){
+    public String crearProducto(@RequestBody Producto prod){
         prod_serv.crearProducto(prod);
+        return "Producto creado con exito";
     }
     
     @GetMapping ("/productos")
@@ -35,13 +36,15 @@ public class ProductoController {
     }
     
     @DeleteMapping ("/productos/eliminar/{id}")
-    public void borrarProducto(@PathVariable Long id){
+    public String borrarProducto(@PathVariable Long id){
         prod_serv.borrarProducto(id);
+        return "Producto borrado con exito";
     }
     
     @PutMapping ("/productos/editar")
-    public void editarProducto(@RequestBody Producto prod){
+    public Producto editarProducto(@RequestBody Producto prod){
         prod_serv.editarProducto(prod);
+        return prod_serv.traerProd(prod.getCodigo_producto());
     }
     
 }
