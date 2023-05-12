@@ -29,17 +29,17 @@ public class ProductoController {
         return prod_serv.traerProductos();
     }
     
-    @GetMapping ("/productos/{codigo}")
+    @GetMapping ("/productos/{id}")
     public Producto traerProd(@PathVariable Long id){
         return prod_serv.traerProd(id);
     }
     
-    @DeleteMapping ("/productos/eliminar/{codigo}")
+    @DeleteMapping ("/productos/eliminar/{id}")
     public void borrarProducto(@PathVariable Long id){
         prod_serv.borrarProducto(id);
     }
     
-    @PutMapping ("/productos/editar/{codigo}")
+    @PutMapping ("/productos/editar") //crea un producto nuevo en lugar de editarlo, posiblemente por lio con la id
     public void editarProducto(@RequestBody Producto prod){
         prod_serv.editarProducto(prod);
     }
