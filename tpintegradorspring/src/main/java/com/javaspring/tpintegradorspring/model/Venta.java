@@ -32,17 +32,17 @@ public class Venta {
             referencedColumnName = "id_cliente")
     public Cliente cliente;
     
-    
-
     public Venta() {
     }
 
-    public Venta(Long codigo_venta, LocalDate fecha_venta, double total, List<Producto> listaProductos, Cliente unCliente) {
+    public Venta(Long codigo_venta, LocalDate fecha_venta, double total, List<Producto> listaProductos, Cliente unCliente, List<Producto> productosVta, Cliente cliente) {
         this.codigo_venta = codigo_venta;
         this.fecha_venta = fecha_venta;
         this.total = total;
         this.listaProductos = listaProductos;
         this.unCliente = unCliente;
+        this.productosVta = productosVta;
+        this.cliente = cliente;
     }
     
 }
