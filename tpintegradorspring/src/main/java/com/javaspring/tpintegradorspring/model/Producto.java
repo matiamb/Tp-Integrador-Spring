@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,13 +21,12 @@ public class Producto {
     public double cantidad_disponible;
     
     @ManyToOne
-    @JoinColumn (name = "codigo_venta")
     public Venta unaVenta;
 
     public Producto() {
     }
 
-    public Producto(Long codigo_producto, String nombre, String marca, double costo, double cantidad_disponible, Venta unaVenta, Cliente unCli) {
+    public Producto(Long codigo_producto, String nombre, String marca, double costo, double cantidad_disponible, Venta unaVenta) {
         this.codigo_producto = codigo_producto;
         this.nombre = nombre;
         this.marca = marca;
