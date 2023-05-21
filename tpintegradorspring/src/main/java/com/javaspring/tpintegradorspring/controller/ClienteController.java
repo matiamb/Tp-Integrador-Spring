@@ -21,7 +21,7 @@ public class ClienteController {
     @PostMapping ("/clientes/crear")
     public String crearCliente(@RequestBody Cliente cli){
         clientesvs.crearCliente(cli);
-        return "Venta creada con exito";
+        return "Cliente creado con exito";
     }
     
     @GetMapping ("/clientes")
