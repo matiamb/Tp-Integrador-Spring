@@ -6,8 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
@@ -21,22 +21,23 @@ public class Venta {
     private Long codigo_venta;
     public LocalDate fecha_venta;
     public double total;
-    @OneToMany (mappedBy = "unaVenta")
+    @ManyToMany (mappedBy = "ventas")
+    //public List<Producto> prods;
     public List<Producto> listaProductos;
-    @OneToOne
-    @JoinColumn(name = "idCliente", 
-            referencedColumnName = "id_cliente")
-    public Cliente unCliente;
+    //public Cliente unCliente;
+    @ManyToOne
+    public Cliente cliente;
+    
     
     public Venta() {
     }
 
-    public Venta(Long codigo_venta, LocalDate fecha_venta, double total, List<Producto> listaProductos, Cliente unCliente) {
+    public Venta(Long codigo_venta, LocalDate fecha_venta, double total, List<Producto> listaProductos, Cliente cliente) {
         this.codigo_venta = codigo_venta;
         this.fecha_venta = fecha_venta;
         this.total = total;
         this.listaProductos = listaProductos;
-        this.unCliente = unCliente;
+        this.cliente = cliente;
     }
     
 }
