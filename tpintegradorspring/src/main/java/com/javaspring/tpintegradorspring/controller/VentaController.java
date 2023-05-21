@@ -1,6 +1,7 @@
 
 package com.javaspring.tpintegradorspring.controller;
 
+import com.javaspring.tpintegradorspring.model.Producto;
 import com.javaspring.tpintegradorspring.model.Venta;
 import com.javaspring.tpintegradorspring.service.VentaService;
 import java.util.List;
@@ -18,11 +19,20 @@ public class VentaController {
     
     @Autowired
     VentaService ventasvs;
+    Producto prod;
     
     @PostMapping ("/ventas/crear")
     public String crearVenta(@RequestBody Venta vta){
-        ventasvs.crearVenta(vta);
-        return "Venta creada con exito";
+        for (Producto p : vta.getListaProductos() ){
+            if(p.cantidad_disponible > 0){
+                ventasvs.crearVenta(vta);
+                return "Venta creada con exito";
+            }
+            else{
+                return "No hay suficiente stock";
+            }
+        }       
+        return null;
     }
     
     @GetMapping ("/ventas")
