@@ -3,6 +3,7 @@ package com.javaspring.tpintegradorspring.controller;
 
 import com.javaspring.tpintegradorspring.model.Producto;
 import com.javaspring.tpintegradorspring.service.IProductoService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -45,6 +46,18 @@ public class ProductoController {
     public Producto editarProducto(@RequestBody Producto prod){
         prod_serv.editarProducto(prod);
         return prod_serv.traerProd(prod.getCodigo_producto());
+    }
+    
+    @GetMapping ("/productos/falta_stock")
+    public List<Producto> getFaltaStock(){
+        List<Producto> prods = new ArrayList<>();
+        for (Producto prod : prod_serv.traerProductos()){
+            if (prod.getCantidad_disponible() < 5){
+                prods.add(prod);
+                System.out.println("producto agregado");
+            }
+        }
+        return prods;
     }
     
 }
