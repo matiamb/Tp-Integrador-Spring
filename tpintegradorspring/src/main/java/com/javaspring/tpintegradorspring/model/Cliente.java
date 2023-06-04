@@ -1,6 +1,7 @@
 
 package com.javaspring.tpintegradorspring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Cliente {
     public String apellido;
     public String dni;
     @OneToMany (mappedBy = "cliente")
+    @JsonIgnoreProperties ("cliente")
     public List<Venta> ventas;
 
     public Cliente() {
