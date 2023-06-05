@@ -25,8 +25,8 @@ public class VentaController {
     public String crearVenta(@RequestBody Venta vta){
         for (Producto p : vta.getListaProductos() ){
             if(p.cantidad_disponible > 0){
-                ventasvs.crearVenta(vta);
-                return "Venta creada con exito";
+        ventasvs.crearVenta(vta);
+        return "Venta creada con exito";
             }
             else{
                 return "No hay suficiente stock";
