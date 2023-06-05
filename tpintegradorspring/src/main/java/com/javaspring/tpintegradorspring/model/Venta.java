@@ -25,7 +25,7 @@ public class Venta {
     //public List<Producto> prods;
     public List<Producto> listaProductos;
     //public Cliente unCliente;
-    @ManyToOne
+    @ManyToOne 
     public Cliente cliente;
     
     
