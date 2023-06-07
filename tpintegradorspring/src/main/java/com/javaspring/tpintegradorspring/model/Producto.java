@@ -22,9 +22,7 @@ public class Producto {
     public String marca;
     public double costo;
     public double cantidad_disponible;
-    @ManyToMany
-    /*@JoinColumn (name = "codigo_venta")
-    @JsonIgnore*/
+    @ManyToMany (mappedBy = "listaProductos")
     public List<Venta> ventas;
 
     public Producto() {
