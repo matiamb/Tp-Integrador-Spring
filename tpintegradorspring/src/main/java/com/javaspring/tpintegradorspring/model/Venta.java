@@ -1,6 +1,7 @@
 
 package com.javaspring.tpintegradorspring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +26,8 @@ public class Venta {
     //public List<Producto> prods;
     public List<Producto> listaProductos;
     //public Cliente unCliente;
-    @ManyToOne 
+    @ManyToOne
+    @JsonIgnoreProperties ("ventas")
     public Cliente cliente;
     
     
