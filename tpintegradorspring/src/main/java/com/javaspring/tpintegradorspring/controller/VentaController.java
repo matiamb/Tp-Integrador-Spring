@@ -19,7 +19,6 @@ public class VentaController {
     
     @Autowired
     VentaService ventasvs;
-    Producto prod;
     
     @PostMapping ("/ventas/crear")
     public String crearVenta(@RequestBody Venta vta){
@@ -54,6 +53,12 @@ public class VentaController {
     public Venta editarVenta(@RequestBody Venta vta){
         ventasvs.editarVenta(vta);
         return ventasvs.traerUnaVenta(vta.getCodigo_venta());
+    }
+    
+    @GetMapping ("/ventas/productos/{id_venta}")
+    public List<Producto> traerProductos(@PathVariable Long id_venta){
+        Venta temp = ventasvs.traerUnaVenta(id_venta);
+        return temp.listaProductos;
     }
     
 }
