@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
@@ -22,10 +23,11 @@ public class Venta {
     private Long codigo_venta;
     public LocalDate fecha_venta;
     public double total;
-    @ManyToMany (mappedBy = "ventas")
-    //public List<Producto> prods;
+    @ManyToMany
+    @JoinTable (name = "Venta_producto",
+            joinColumns = @JoinColumn (name = "id_venta"),
+            inverseJoinColumns = @JoinColumn (name = "id_producto"))
     public List<Producto> listaProductos;
-    //public Cliente unCliente;
     @ManyToOne
     @JsonIgnoreProperties ("ventas")
     public Cliente cliente;
