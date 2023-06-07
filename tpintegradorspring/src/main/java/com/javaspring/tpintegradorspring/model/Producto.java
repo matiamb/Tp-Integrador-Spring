@@ -1,6 +1,7 @@
 
 package com.javaspring.tpintegradorspring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Producto {
     public double costo;
     public double cantidad_disponible;
     @ManyToMany (mappedBy = "listaProductos")
+    @JsonIgnore
     public List<Venta> ventas;
 
     public Producto() {
