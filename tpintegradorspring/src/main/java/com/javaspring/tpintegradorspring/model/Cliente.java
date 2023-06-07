@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class Cliente {
     public String dni;
     @OneToMany (mappedBy = "cliente")
     @JsonIgnoreProperties ("cliente")
+    @JsonIgnore
     public List<Venta> ventas;
 
     public Cliente() {
