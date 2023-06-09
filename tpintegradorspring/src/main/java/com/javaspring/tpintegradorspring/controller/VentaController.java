@@ -45,7 +45,7 @@ public class VentaController {
         return ventasvs.traerUnaVenta(id);
     }
     
-    @DeleteMapping ("/ventas/{id}")
+    @DeleteMapping ("/ventas/borrar/{id}")
     public String borrarVenta(@PathVariable Long id){
         return "Venta borrada con exito";
     }
@@ -68,11 +68,10 @@ public class VentaController {
         int contador = 0;
         int total = 0;
         for (Venta v : temp){
-            if (fecha_venta == v.getFecha_venta()){
+            if (fecha_venta.toString().equals(v.getFecha_venta().toString())){
                 contador += 1;
-                total += v.getTotal();                
+                total += v.getTotal();
             }
-            System.out.println(v.getFecha_venta());
         }
         return "El dia " + fecha_venta + " hubo " + contador + " ventas. El total recaudado en el dia es de " + total;
     }
