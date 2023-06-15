@@ -1,10 +1,12 @@
 
 package com.javaspring.tpintegradorspring.controller;
 
+import com.javaspring.tpintegradorspring.dto.MayorVentaDTO;
 import com.javaspring.tpintegradorspring.model.Producto;
 import com.javaspring.tpintegradorspring.model.Venta;
 import com.javaspring.tpintegradorspring.service.VentaService;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,6 +22,7 @@ public class VentaController {
     
     @Autowired
     VentaService ventasvs;
+    MayorVentaDTO mayordto;
     
     @PostMapping ("/ventas/crear")
     public String crearVenta(@RequestBody Venta vta){
@@ -74,6 +77,27 @@ public class VentaController {
             }
         }
         return "El dia " + fecha_venta + " hubo " + contador + " ventas. El total recaudado en el dia es de " + total;
+    }
+    
+    @GetMapping ("/ventas/mayor")
+    public MayorVentaDTO traerMayor(){
+        List<Venta> temp = ventasvs.traerVentas();
+        Venta vta = temp.stream()
+                        .max(Comparator.comparingDouble(Venta::getTotal))
+                        .get();
+        int contador = 0;
+        
+        for (Producto p : vta.getListaProductos()){
+            contador += 1;
+        }
+        
+        mayordto.setCodigo_venta(vta.getCodigo_venta());
+        mayordto.setTotal(vta.getTotal());
+        mayordto.setNombre(vta.getCliente().getNombre());
+        mayordto.setApellido(vta.getCliente().getApellido());
+        mayordto.setCant_prods(contador);
+        
+        return mayordto;
     }
     
 }
